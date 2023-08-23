@@ -16,6 +16,12 @@ module.exports = {
         secondary: ['Pacifico', 'sans-serif']
       }
     },
+    screens: {
+      '2xl': {'max': '1535px'},
+      'xl': {'max': '1279px'},
+      'md': {'max': '1023px'},
+      'sm': {'max': '639px'}
+    }
   },
   plugins: [],
 }

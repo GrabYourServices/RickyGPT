@@ -43,18 +43,18 @@ export default function Home() {
       </div>
       <div className='w-screen flex flex-col items-center justify-center p-4 '>        
         <textarea
-          className='px-4 py-2 mt-8 bg-white border-black border-2 text-black font-black placeholder:text-black font-primary border-solid w-3/6 rounded-lg cursor-pointer transition duration-500 hover:scale-105'
+          className='px-4 py-2 mt-8 bg-white border-black border-2 text-black font-black placeholder:text-black font-primary border-solid w-3/6 md:w-5/6 rounded-lg cursor-pointer transition duration-500 hover:scale-105'
           placeholder='Click Here To Begin Typing'
           value={inputValue}
           onChange={handleInputChange}
           style={{ resize: 'none' }}
         />
-        <button onClick={handleBtnSubmit} className='px-4 py-2 mt-4 bg-yeelow rounded-lg border-black border-2 text-black font-black border-solid w-3/6 transition duration-500 cursor-pointer hover:scale-105'>Submit</button>
+        <button onClick={handleBtnSubmit} className='px-4 py-2 mt-4 bg-yeelow rounded-lg border-black border-2 text-black font-black border-solid w-3/6 md:w-5/6 transition duration-500 cursor-pointer hover:scale-105'>Submit</button>
       </div>
       <div className='flex w-screen justify-center items-center'>
       {outputValue == '' ? <></> : 
         <div
-        className='justify-self-center px-4 py-2 mt-8 bg-white border-black border-2 text-black font-black font-primary border-solid w-3/6 rounded-lg cursor-pointer transition duration-500 hover:scale-105'
+        className='justify-self-center px-4 py-2 mt-8 bg-white border-black border-2 text-black font-black font-primary border-solid w-3/6 md:w-5/6 rounded-lg cursor-pointer transition duration-500 hover:scale-105'
         >
           <h1 className='text-2xl mb-1'>Ricky: </h1>
           <p><Typewriter
