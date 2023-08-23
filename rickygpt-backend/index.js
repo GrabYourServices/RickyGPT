@@ -15,7 +15,7 @@ const initialConversation = [
   {
     role: 'system',
     content:
-      'You are a helpful assistant. Your Name is Ricky. Your creator is Ateeb Sohail, you were made on 23rd August 2023. You were made for a science fair at LGS Central Park.',
+      'You are a helpful assistant. Your Name is Ricky. Your creator is Ateeb Sohail, you were made on 23rd August 2023. You were made for a science fair at LGS Central Park. You must summarize every response. Your response must not exceed 300 characters.',
   },
 ];
 app.use(cors())
@@ -24,7 +24,7 @@ app.get('/api/ai/reply', async (req, res) => {
   const query = req.query.query;
 
   if (!query) {
-    return res.status(400).json({ error: 'Query parameter "query" is required.' });
+    return res.status(400).json({ response: 'Query parameter "query" is required.' });
   }
 
   const conversation = [...initialConversation, { role: 'user', content: query }];
@@ -40,7 +40,7 @@ app.get('/api/ai/reply', async (req, res) => {
     res.json({ query, response: aiResponse });
   } catch (error) {
     console.error('Error generating response:', error);
-    res.status(500).json({ error: 'An error occurred while generating the response.' });
+    res.json({ response: 'An error occurred while generating the response.' });
   }
 });
 

@@ -1,12 +1,15 @@
 'use client'
+import { apiLink } from '@/assets/urls';
 import axios from 'axios'
 import { useState } from 'react';
 import Image from 'next/image'
 import './globals.css'
 import { data } from 'autoprefixer';
+import { Typewriter } from 'react-simple-typewriter';
 
 export default function Home() {
   const [inputValue, setInputValue] = useState('');
+  const [oldInputValue, setOldInputValue] = useState('')
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputValue(event.target.value);
@@ -23,9 +26,14 @@ export default function Home() {
   const [outputValue, setOutputValue] = useState('')
 
   const handleBtnSubmit = async () => {
-    const resp = await axios.get(`http://localhost:8080/api/ai/reply?query=${inputValue}`)
-    setOutputValue(resp.data.response)
-    console.log(outputValue)
+    if(oldInputValue == inputValue) {
+      return
+    }
+    setOutputValue('Getting a Response...')
+    const resp = await axios.get(`${apiLink}${inputValue}`)
+    setOutputValue(resp.data.response || 'There was an error getting a response! Most Likely Rate Limit!')
+    setOldInputValue(inputValue)
+    console.log(resp.data.response)
   }
 
   return (
@@ -42,6 +50,25 @@ export default function Home() {
           style={{ resize: 'none' }}
         />
         <button onClick={handleBtnSubmit} className='px-4 py-2 mt-4 bg-yeelow rounded-lg border-black border-2 text-black font-black border-solid w-3/6 transition duration-500 cursor-pointer hover:scale-105'>Submit</button>
+      </div>
+      <div className='flex w-screen justify-center items-center'>
+      {outputValue == '' ? <></> : 
+        <div
+        className='justify-self-center px-4 py-2 mt-8 bg-white border-black border-2 text-black font-black font-primary border-solid w-3/6 rounded-lg cursor-pointer transition duration-500 hover:scale-105'
+        >
+          <h1 className='text-2xl mb-1'>Ricky: </h1>
+          <p><Typewriter
+            cursor
+            cursorBlinking
+            delaySpeed={750}
+            deleteSpeed={500}
+            loop={2}
+            typeSpeed={100}
+            words={[
+              outputValue
+            ]}
+          /></p>
+        </div>}
       </div>
     </main>
   )
