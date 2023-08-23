@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: ArchitectsDaughter;
+  src: url('../assets/fonts/ArchitectsDaughter-Regular.ttf');
+}
+@font-face {
+  font-family: Pacifico;
+  src: url('../assets/fonts/Pacifico-Regular.ttf');
+}
+:root {
+  --plurple-color: rgb(177,156,217);
+  --yeelow-color: #f7f994;
+}
+
+.fontOutlined {
+  text-shadow:
+   -2px -2px 0 #000,  
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+     2px 2px 0 #000;
+     font-family: 'Pacifico',serif;
+}
